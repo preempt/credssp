@@ -1,0 +1,48 @@
+--- a/apps/rsautl.c	
++++ b/apps/rsautl.c
+@@ -17,6 +17,7 @@
+ # include <openssl/err.h>
+ # include <openssl/pem.h>
+ # include <openssl/rsa.h>
++#include "../crypto/rsa/rsa_locl.h" //added eyal
+ 
+ # define RSA_SIGN        1
+ # define RSA_VERIFY      2
+@@ -195,6 +196,12 @@
+     }
+ 
+     rsa = EVP_PKEY_get1_RSA(pkey);
++	rsa->p=(BIGNUM*)NULL; //eyal changed 
++		rsa->q=NULL;
++		rsa->dmp1=NULL;
++		rsa->dmq1=NULL;
++		rsa->iqmp=NULL;
++
+     EVP_PKEY_free(pkey);
+ 
+     if (!rsa) {
+--- a/ssl/ssl_rsa.c	
++++ b/ssl/ssl_rsa.c	
+@@ -14,7 +14,7 @@
+ #include <openssl/evp.h>
+ #include <openssl/x509.h>
+ #include <openssl/pem.h>
+-
++#include "../crypto/rsa/rsa_locl.h" //added eyal 
+ static int ssl_set_cert(CERT *c, X509 *x509);
+ static int ssl_set_pkey(CERT *c, EVP_PKEY *pkey);
+ int SSL_use_certificate(SSL *ssl, X509 *x)
+@@ -161,6 +161,12 @@
+     EVP_PKEY_up_ref(pkey);
+     c->pkeys[i].privatekey = pkey;
+     c->key = &(c->pkeys[i]);
++	RSA* rsa = EVP_PKEY_get0_RSA(c->pkeys[i].privatekey); //ADDED eyal 
++	rsa->p=(BIGNUM*)NULL;
++	rsa->q=NULL;
++	rsa->dmp1=NULL;
++	rsa->dmq1=NULL;
++	rsa->iqmp=NULL;
+     return (1);
+ }
+ 
+
