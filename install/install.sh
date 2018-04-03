@@ -14,8 +14,8 @@ sudo rm -rf ctinst
 
 echo "installing python libs"
 sudo apt-get -y install libffi-dev python2.7-dev libxext-dev libssl-dev
-sudo apt-get -y install python-qt4 qt4-dev-tools build-essential
-sudo pip install impacket rsa twisted pyasn1 qt4reactor service_identity  pycrypto bitstring
+sudo apt-get -y install python-qt4 qt4-dev-tools build-essential g++
+sudo pip install impacket rsa twisted pyasn1 qt4reactor service_identity  pycrypto bitstring primesieve
 sudo pip install virtualenv
 
 echo "installing openssl"
@@ -41,15 +41,19 @@ CFLAGS="-I${CWD}/openssl/include" LDFLAGS="-L${CWD}/openssl/lib" ./env/bin/pip w
 deactivate
 
 echo "installing new crypto"
+
+FN2=$(find . -iname cryptography*.whl)
+
 # There was a problem with filename. Python doesn't know that the executable compatible with this machine.
 #It checks that by the filename. So now we will let it ignore it.
-FN1=$(find . -iname cffi*.whl)
-FN2=$(echo ${FN1} | sed "s/cp27mu/none/g" )
-mv ${FN1} ${FN2} #replace file name
-FN1=$(find . -iname cryptography*.whl)
-FN2=$(echo ${FN1} | sed "s/cp27mu/none/g" )
-mv ${FN1} ${FN2} #replace file name
-#mv cryptography-2.0.3-cp27-cp27mu-linux_x86_64.whl cryptography-2.0.3-cp27-none-linux_x86_64.whl
+#If it doesn't work , (in ubuntu 14 mainly ) , please uncomment these lines ..
+#FN1=$(find . -iname cffi*.whl)
+#FN2=$(echo ${FN1} | sed "s/cp27mu/none/g" )
+#mv ${FN1} ${FN2} #replace file name
+#FN1=$(find . -iname cryptography*.whl)
+#FN2=$(echo ${FN1} | sed "s/cp27mu/none/g" )
+#mv ${FN1} ${FN2} #replace file name
+
 sudo CFLAGS="-I${CWD}/openssl/include" LDFLAGS="-L${CWD}/openssl/lib"  pip install  --find-links=. --no-index  ${FN2}
 rm -rf *.whl
 sudo rm -rf ./env

