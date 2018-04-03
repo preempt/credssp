@@ -6,11 +6,11 @@ This is a code used for exploition this vulnerability, and it should be used for
 # Build
 
 ## Instructions (Linux)
-If you are using Ubuntu 14 , check the file.. 
+If you are using Ubuntu 14 , check the install file.. 
 
 ```
 $ git clone https://github.com/preempt/rdpy.git rdpy
-$ git clone https://github.com/preempt/credssp.git rdpy
+$ git clone https://github.com/preempt/credssp.git 
 $ credssp/install/install.sh 
 $ python rdpy/setup.py install
 ```
