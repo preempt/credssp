@@ -11,14 +11,16 @@ If you are using Ubuntu 14 , check the install file..
 ```
 $ git clone https://github.com/preempt/rdpy.git rdpy
 $ git clone https://github.com/preempt/credssp.git 
-$ credssp/install/install.sh 
-$ python rdpy/setup.py install
+$ cd credssp/install
+$ sh install.sh
+$ cd ../../rdpy
+$ sudo python setup.py install
 ```
 
 # Running the exploit 
 
 
-Export a certificate suitable for Server Authentication from any domain. Then: 
+Export a certificate suitable for Server Authentication from any domain.
 
 
 To generate a suitable certificate for the command to execute : 
