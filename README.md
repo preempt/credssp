@@ -24,7 +24,7 @@ $ sudo python setup.py install
 ```
 * It assumes a pretty clean inital state. Best to uninstall first relevant compontants such as cryptography,pyopenssl maybe (pip uninstall cryptography).  
 * A different version of openssl needed to be installed for this to run successfully.  The install script does that. 
-* Please follow this instructions in the described order. 
+* Please follow the instructions in the described order. 
 
 # Running the exploit 
 
