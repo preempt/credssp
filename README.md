@@ -2,6 +2,8 @@
 A code demonstrating CVE-2018-0886
 
 This is a code used for exploition this vulnerability, and it should be used for educational purposes only.
+It relies on a fork of the rdpy project(https://github.com/citronneur/rdpy), allowing also credssp relay. 
+The code can be found here: 
 
 Written by Eyal Karni, Preempt 
 ekarni@preempt.com 
@@ -20,6 +22,9 @@ $ sh install.sh
 $ cd ../../rdpy
 $ sudo python setup.py install
 ```
+* It assumes a pretty clean inital state. Best to uninstall first relevant compontants such as cryptography,pyopenssl maybe (pip uninstall cryptography).  
+* A different version of openssl needed to be installed for this to run successfully.  The install script does that. 
+* Please follow this instructions in the described order. 
 
 # Running the exploit 
 
