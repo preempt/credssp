@@ -1,9 +1,8 @@
 # credssp
-A code demonstrating CVE-2018-0886
 
-This is a code used for exploition this vulnerability, and it should be used for educational purposes only.
+This is a poc code for exploiting CVE-2018-0886. It should be used for educational purposes only.
 It relies on a fork of the rdpy project(https://github.com/preempt/rdpy), allowing also credssp relay. 
-The code can be found here: 
+
 
 Written by Eyal Karni, Preempt 
 ekarni@preempt.com 
