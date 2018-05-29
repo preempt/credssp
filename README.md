@@ -21,7 +21,7 @@ $ sh install.sh
 $ cd ../../rdpy
 $ sudo python setup.py install
 ```
-* It assumes a pretty clean inital state. Best to uninstall first relevant compontants such as cryptography,pyopenssl maybe (pip uninstall cryptography).  
+* It assumes a pretty clean inital state. Best to uninstall first relevant components such as cryptography, pyopenssl maybe (pip uninstall cryptography).  
 * A different version of openssl needed to be installed for this to run successfully.  The install script does that. 
 * Please follow the instructions in the described order. 
 
