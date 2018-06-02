@@ -27,7 +27,7 @@ pip install -U setuptools
 pip install -U wheel pip
 curl -O https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz
 tar xvf openssl-${OPENSSL_VERSION}.tar.gz
-rm -f openssl-1.1.0.tar.gz
+rm -f openssl-${OPENSSL_VERSION}.tar.gz
 cd openssl-${OPENSSL_VERSION}
 echo "Patching.."
 patch -p1 < ../openssl_diff_file.diff
