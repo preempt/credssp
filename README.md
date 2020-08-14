@@ -29,7 +29,7 @@ $ sudo python setup.py install
 
 
 Export a certificate suitable for Server Authentication from any domain.
-(As shown here https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn781533(v=ws.11)) 
+(It is used for RDP https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn781533(v=ws.11)) 
 
 To generate a certificate that exploits the vulnerability(contains the payload),use: 
 
